@@ -1,0 +1,23 @@
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Image
+        run: docker-compose build
+
+      - name: Run Tests
+        run: docker-compose run --rm flask sh -c "pytest && flake8"
