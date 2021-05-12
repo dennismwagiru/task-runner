@@ -24,4 +24,3 @@ ___
 ___
 
     $ docker-compose run --rm flask sh -c "pytest && flake8"
-    $ pytest
