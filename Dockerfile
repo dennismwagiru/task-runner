@@ -1,21 +1,18 @@
 FROM python:3.9-alpine
-
 LABEL MAINTAINER="Dennis Joel <dennismwagiru@gmail.com>"
 
-ENV GROUP_ID=1000 \
-    USER_ID=1000
+ENV PYTHONUNBUFFERED 1
 
-WORKDIR /var/www/
+COPY ./requirements.txt /requirements.txt
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
+      gcc libc-dev linux-headers
 
-ADD . /var/www/
-RUN pip install -r requirements.txt
-RUN pip install gunicorn
+RUN pip install -r /requirements.txt
+RUN apk del .tmp-build-deps
 
-RUN addgroup -g $GROUP_ID www
-RUN adduser -D -u $USER_ID -G www www -s /bin/sh
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
 
-USER www
-
-EXPOSE 5000
-
-CMD [ "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "wsgi" ]
+RUN adduser -D user
+USER user
