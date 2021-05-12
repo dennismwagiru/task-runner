@@ -1,16 +1,17 @@
+import os
+
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 
-from instance.config import app_config
+from app.config import app_config
 
 
-def create_app(config_name):
-    print(config_name)
+def create_app():
+    ENVIRONMENT = os.environ.get("FLASK_ENV", 'development')
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(app_config['development'])
-    app.config.from_pyfile('config.py')
+    app.config.from_object(app_config[ENVIRONMENT])
     mongo = PyMongo(app)
     db = mongo.db
 
@@ -26,9 +27,10 @@ def create_app(config_name):
         _json = request.json
         if 'command' in _json and _json['command']:
             _command = _json['command']
-            command = db.tasks.insert({'command': _command, 'status': 'pending'})
+            command = db.tasks.insert({
+                'command': _command, 'status': 'pending'
+            })
             resp = dumps(command)
-            # resp.status_code = 200
             return resp
 
     @app.route('/tasks')
