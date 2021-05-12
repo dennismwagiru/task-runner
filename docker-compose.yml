@@ -2,12 +2,13 @@ version: '3'
 services:
 
   flask:
+    container_name: taskrunner
     build:
-      context: .
+      context: src
     ports:
       - "5000:5000"
     volumes:
-      - .:/app
+      - ./src:/app
     environment:
       APP_ENV: "prod"
       APP_DEBUG: "False"
@@ -35,7 +36,7 @@ services:
       MONGODB_DATA_DIR: /data/db
       MONDODB_LOG_DIR: /dev/null
     volumes:
-      - mongodbdata:/data/mydb
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
 volumes:
   mongodbdata:
