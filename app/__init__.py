@@ -8,10 +8,11 @@ from bson.objectid import ObjectId
 from app.config import app_config
 
 
-def create_app():
-    ENVIRONMENT = os.environ.get("FLASK_ENV", 'development')
+def create_app(environment=None):
+    if environment is None:
+        environment = os.environ.get("FLASK_ENV", 'development')
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(app_config[ENVIRONMENT])
+    app.config.from_object(app_config[environment])
     mongo = PyMongo(app)
     db = mongo.db
 
@@ -25,12 +26,14 @@ def create_app():
     @app.route("/new_task", methods=['POST'])
     def new_task():
         _json = request.json
-        if 'command' in _json and _json['command']:
-            _command = _json['command']
-            command = db.tasks.insert({
+        _command = _json['command']
+        if _command:
+            _id = db.tasks.insert({
                 'command': _command, 'status': 'pending'
             })
-            resp = dumps(command)
+            print(_id)
+            resp = jsonify(id=str(_id))
+            resp.status_code = 201
             return resp
 
     @app.route('/tasks')
