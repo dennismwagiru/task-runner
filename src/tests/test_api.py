@@ -13,6 +13,10 @@ class TaskRunnerApiTestCase(unittest.TestCase):
         self.client = self.app.test_client
         self.task = {'command': 'ls'}
 
+    def test_server_is_up(self):
+        res = self.client().get('/')
+        self.assertEqual(res.status_code, 200)
+
     def test_new_task_endpoint(self):
         """Test API can create a new task (POST request)"""
         res = self.client().post('/new_task', json=self.task)
@@ -43,3 +47,13 @@ class TaskRunnerApiTestCase(unittest.TestCase):
         res = self.client().get('/get_output/{}'
                                 .format('609128054724352685602766'))
         self.assertEqual(res.status_code, 404)
+
+    def test_task_status(self):
+        res = self.client().post(
+            "/new_task",
+            json=self.task,
+        )
+        content = json.loads(res.data.decode())
+        task_id = content["id"]
+        self.assertEqual(res.status_code, 201)
+        assert task_id
