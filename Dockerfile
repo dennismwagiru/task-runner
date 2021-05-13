@@ -17,3 +17,5 @@ RUN pip install -r requirements.txt
 
 # copy project
 COPY . .
+
+touch src/logs/celery.log
