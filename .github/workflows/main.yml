@@ -20,4 +20,4 @@ jobs:
         run: docker-compose build
 
       - name: Run Tests
-        run: docker-compose run --rm flask sh -c "pytest && flake8"
+        run: docker-compose run --rm api sh -c "pytest && flake8"

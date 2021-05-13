@@ -1,0 +1,126 @@
+[2021-05-13 06:33:13,277: INFO/MainProcess] Connected to redis://redis:6379/0
+[2021-05-13 06:33:13,292: INFO/MainProcess] mingle: searching for neighbors
+[2021-05-13 06:33:14,325: INFO/MainProcess] mingle: all alone
+[2021-05-13 06:33:14,356: INFO/MainProcess] celery@51cedd7bfd68 ready.
+[2021-05-13 06:33:19,175: INFO/MainProcess] Events of group {task} enabled by remote.
+[2021-05-13 06:38:18,483: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 318, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 119, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 599, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 83, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 364, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 1083, in on_readable
+    self.cycle.on_readable(fileno)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 354, in on_readable
+    chan.handlers[type]()
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 688, in _receive
+    ret.append(self._receive_one(c))
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 698, in _receive_one
+    response = c.parse_response()
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 3505, in parse_response
+    response = self._execute(conn, conn.read_response)
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 3479, in _execute
+    return command(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 739, in read_response
+    response = self._parser.read_response()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 324, in read_response
+    raw = self._buffer.readline()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 256, in readline
+    self._read_from_socket()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 201, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+[2021-05-13 06:38:21,676: INFO/MainProcess] Connected to redis://redis:6379/0
+[2021-05-13 06:38:21,700: INFO/MainProcess] mingle: searching for neighbors
+[2021-05-13 06:38:22,727: INFO/MainProcess] mingle: all alone
+[2021-05-13 06:48:55,145: INFO/MainProcess] Connected to redis://redis:6379/0
+[2021-05-13 06:48:55,274: INFO/MainProcess] mingle: searching for neighbors
+[2021-05-13 06:48:56,548: INFO/MainProcess] mingle: all alone
+[2021-05-13 06:48:57,813: INFO/MainProcess] celery@a3a140d7a86d ready.
+[2021-05-13 06:49:04,979: INFO/MainProcess] Events of group {task} enabled by remote.
+[2021-05-13 06:49:51,539: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 318, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 119, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 599, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 83, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 364, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 1083, in on_readable
+    self.cycle.on_readable(fileno)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 354, in on_readable
+    chan.handlers[type]()
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 688, in _receive
+    ret.append(self._receive_one(c))
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 698, in _receive_one
+    response = c.parse_response()
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 3505, in parse_response
+    response = self._execute(conn, conn.read_response)
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 3479, in _execute
+    return command(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 739, in read_response
+    response = self._parser.read_response()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 324, in read_response
+    raw = self._buffer.readline()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 256, in readline
+    self._read_from_socket()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 201, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+[2021-05-13 06:49:51,593: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error 111 connecting to redis:6379. Connection refused..
+Trying again in 2.00 seconds... (1/100)
+
+[2021-05-13 06:50:16,237: INFO/MainProcess] Connected to redis://redis:6379/0
+[2021-05-13 06:50:16,295: INFO/MainProcess] mingle: searching for neighbors
+[2021-05-13 06:50:17,306: INFO/MainProcess] mingle: all alone
+[2021-05-13 07:00:46,592: INFO/MainProcess] Connected to redis://redis:6379/0
+[2021-05-13 07:00:46,796: INFO/MainProcess] mingle: searching for neighbors
+[2021-05-13 07:00:47,824: INFO/MainProcess] mingle: all alone
+[2021-05-13 07:00:47,840: INFO/MainProcess] celery@0382860cb94a ready.
+[2021-05-13 07:00:52,342: INFO/MainProcess] Events of group {task} enabled by remote.
+[2021-05-13 07:03:44,767: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 318, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 119, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 599, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 83, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 364, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 1083, in on_readable
+    self.cycle.on_readable(fileno)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 354, in on_readable
+    chan.handlers[type]()
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 688, in _receive
+    ret.append(self._receive_one(c))
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/redis.py", line 698, in _receive_one
+    response = c.parse_response()
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 3505, in parse_response
+    response = self._execute(conn, conn.read_response)
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 3479, in _execute
+    return command(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 739, in read_response
+    response = self._parser.read_response()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 324, in read_response
+    raw = self._buffer.readline()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 256, in readline
+    self._read_from_socket()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 201, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+[2021-05-13 07:04:02,040: INFO/MainProcess] Connected to redis://redis:6379/0
+[2021-05-13 07:04:02,493: INFO/MainProcess] mingle: searching for neighbors
+[2021-05-13 07:04:03,530: INFO/MainProcess] mingle: all alone

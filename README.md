@@ -1,6 +1,8 @@
 Task Runner
 ==============
 
+![CI Workflow](https://github.com/dennismwagiru/task-runner/actions/workflows/main.yml/badge.svg)
+
 This is an interview project.
 
 Install
@@ -9,7 +11,7 @@ Install
     $ git clone https://github.com/dennismwagiru/task-runner
     $ cd task-runner
 
-Build Docker image::
+Build Docker image
 
     $ docker-compose build
 
@@ -23,4 +25,4 @@ ___
 #Test
 ___
 
-    $ docker-compose run --rm flask sh -c "pytest && flake8"
+    $ docker-compose run --rm api sh -c "pytest && flake8"

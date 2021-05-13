@@ -5,7 +5,7 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 
-from app.config import app_config
+from src.app.config import app_config
 
 
 def create_app(environment=None):
@@ -28,9 +28,7 @@ def create_app(environment=None):
         _json = request.json
         _command = _json['command']
         if _command:
-            _id = db.tasks.insert({
-                'command': _command, 'status': 'pending'
-            })
+            _id = db.tasks.insert({'command': _command, 'status': 'pending'})
             print(_id)
             resp = jsonify(id=str(_id))
             resp.status_code = 201
@@ -44,12 +42,12 @@ def create_app(environment=None):
 
     @app.route('/get_output/<id>')
     def get_output(id):
-        task = mongo.db.tasks.find_one({'_id': ObjectId(id)})
+        task = mongo.db.tasks.find_one_or_404({'_id': ObjectId(id)})
         resp = dumps(task)
         return resp
 
     @app.errorhandler(404)
-    def not_found():
+    def not_found(e):
         message = {
             'status': 404,
             'message': 'Not Found: ' + request.url,

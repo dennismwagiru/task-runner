@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from app import create_app
+from src.app import create_app
 
 
 class TaskRunnerApiTestCase(unittest.TestCase):
@@ -37,3 +37,9 @@ class TaskRunnerApiTestCase(unittest.TestCase):
         )
         self.assertEqual(result.status_code, 200)
         self.assertIn('ls', str(result.data))
+
+    def test_get_missing_task_output(self):
+        """Test API returns 404 for missing task"""
+        res = self.client().get('/get_output/{}'
+                                .format('609128054724352685602766'))
+        self.assertEqual(res.status_code, 404)
