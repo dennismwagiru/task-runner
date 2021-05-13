@@ -1,4 +1,5 @@
 .idea
+.coverage
 env
 venv
 celerybeat-schedule

@@ -1,7 +1,10 @@
 import json
 import unittest
+from bson.objectid import ObjectId
 
 from src.app import create_app
+from src.app.db import db
+from src.app.tasks import run_commands
 
 
 class TaskRunnerApiTestCase(unittest.TestCase):
@@ -57,3 +60,15 @@ class TaskRunnerApiTestCase(unittest.TestCase):
         task_id = content["id"]
         self.assertEqual(res.status_code, 201)
         assert task_id
+
+    def test_task_is_executed(self):
+        res = self.client().post(
+            "/new_task",
+            json=self.task
+        )
+        content = json.loads(res.data.decode())
+        task_id = content["id"]
+        self.assertEqual(res.status_code, 201)
+        run_commands.s().apply()
+        task = db.tasks.find_one({'_id': ObjectId(task_id)})
+        self.assertEqual(task['status'], "completed")
