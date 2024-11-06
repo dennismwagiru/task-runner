@@ -3,8 +3,6 @@ Task Runner
 
 ![CI Workflow](https://github.com/dennismwagiru/task-runner/actions/workflows/main.yml/badge.svg)
 
-This is an interview project for the position of a backend engineer.
-
 ### Background
 
 Implement a background task that will read the tasks from mongo db and execute it and then save the output to db
